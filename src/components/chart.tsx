@@ -1,7 +1,7 @@
 "use client";
 
 import { useWastedTime } from "@/hooks/useWastedTime";
-import { Bar, Line, Chart as MixedChart } from "react-chartjs-2";
+import { Chart as MixedChart } from "react-chartjs-2";
 
 import { Chart as ChartJS, registerables } from "chart.js";
 ChartJS.register(...registerables);
