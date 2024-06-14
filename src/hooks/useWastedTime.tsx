@@ -26,23 +26,15 @@ function calculateWastedTime(
   );
 
   while (date.isBefore(currentTime)) {
-    // console.log(date);
     if (
       currentIssueIndex < timeWasted.length &&
       timeWasted[currentIssueIndex].start.isSame(date, "day")
     ) {
-      const { start, end } = timeWasted[currentIssueIndex];
-      const endTime = end === undefined ? currentTime : end;
+      const currentIssue = timeWasted[currentIssueIndex];
+      const endTime =
+        currentIssue.status === "ongoing" ? currentTime : currentIssue.end;
 
-      console.log(
-        {
-          start: start.format("YYYY-MM-DDTHH:mm:ssZ"),
-          endTime: endTime.format("YYYY-MM-DDTHH:mm:ssZ"),
-        },
-        endTime.utc(true).diff(start.utc(true)) / (1000 * 60 * 60)
-      );
-
-      hoursWasted.push(endTime.diff(start) / (1000 * 60 * 60));
+      hoursWasted.push(endTime.diff(currentIssue.start) / (1000 * 60 * 60));
       currentIssueIndex++;
     } else {
       hoursWasted.push(0);
