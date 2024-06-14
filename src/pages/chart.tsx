@@ -27,6 +27,7 @@ export function Chart() {
         </p>
       </h2>
       <MixedChart
+        type="bar"
         data={{
           datasets: [
             {
